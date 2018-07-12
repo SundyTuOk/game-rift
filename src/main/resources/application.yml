@@ -1,0 +1,63 @@
+server:
+  port: 8899
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+spring:
+  # 阿里巴巴druid数据源
+  datasource:
+      type: com.alibaba.druid.pool.DruidDataSource
+      driverClassName: com.mysql.jdbc.Driver
+      druid:
+        datasource1:  #主库数据源
+          url: jdbc:mysql://127.0.0.1:3306/test1?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+          username: root
+          password: 123
+#        datasource2:  #从库数据源
+#          url: jdbc:mysql://127.0.0.1:3306/test2?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+#          username: root
+#          password: 123
+      initial-size: 10
+      max-active: 100
+      min-idle: 10
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: admin
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+
+  thymeleaf:
+      prefix: classpath:/templates/
+      suffix: .html
+      encoding: UTF-8
+      cache: false
+
+  resources:
+    static-locations: classpath:/templates/,classpath:/static/
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+logging:
+  level:
+    com.tu.gr.orm.dao: debug
+
+
