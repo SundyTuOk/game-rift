@@ -1,8 +1,6 @@
 package com.tu.gr.login;
 
 import com.tu.gr.orm.dao.UserMapper;
-import com.tu.gr.orm.model.User;
-import com.tu.gr.orm.model.UserExample;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @Controller
 public class LoginAndLogout {
@@ -21,18 +18,17 @@ public class LoginAndLogout {
     @Autowired
     private UserMapper userMapper;
     /**
-     * 圈子首页，登录页面
+     * 圈子首页
      * @return
      */
     @GetMapping("/")
-//    @ResponseBody
     public String index() {
-        UserExample example = new UserExample();
-        UserExample.Criteria criteria = example.createCriteria();
-        criteria.andUsernameLike("李%");
-        List<User> users = userMapper.selectByExample(example);
+//        UserExample example = new UserExample();
+//        UserExample.Criteria criteria = example.createCriteria();
+//        criteria.andUsernameLike("李%");
+//        List<User> users = userMapper.selectByExample(example);
 //        return "username:" + users.get(0).getUsername();
-        return "login/login";
+        return "index/index";
     }
 
     /**
